@@ -3,7 +3,7 @@ package com.network;
 import java.net.*;
 import java.io.*;
 
-public class KKMultiServer {
+public class KKMultiThreadServer {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 1) {

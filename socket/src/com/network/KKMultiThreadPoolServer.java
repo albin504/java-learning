@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class KKMultiServer2 {
+public class KKMultiThreadPoolServer {
     public static void main(String[] args) throws IOException {
 
         if (args.length != 1) {

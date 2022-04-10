@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class TrimTest {
+public class TrimTest {
+    public static void main(String[] args) {
+
+    }
 }

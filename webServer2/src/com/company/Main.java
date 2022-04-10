@@ -16,9 +16,8 @@ public class Main {
         Scanner in = new Scanner(input);
         String directory = in.nextLine();
         String keyword = in.nextLine();
-        int n = Integer.parseInt(args[0]);
-//        ExecutorService pool = Executors.newCachedThreadPool();
-        ExecutorService pool = Executors.newFixedThreadPool(n);
+        int nthreads = Integer.parseInt(args[0]);
+        ExecutorService pool = Executors.newFixedThreadPool(nthreads);
         MatchCounter counter = new MatchCounter(new File(directory),keyword,pool);
         Future<Integer> result =  pool.submit(counter);
         System.out.println(result.get() + " matching files");

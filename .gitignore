@@ -1,4 +1,5 @@
 out
 .idea
-.properties
+*.properties
 .DS_Store
+target
