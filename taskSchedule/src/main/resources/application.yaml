@@ -1,0 +1,31 @@
+crontab:
+  crons:
+    - cmd: "date;sleep 20;" # 要执行的命令
+      id: 1 # 任务id
+      output: /tmp/1.log # 指定任务的标准输出文件
+      singleton: 1 # 是否禁止crontab并发执行。当一个任务还未执行完时，下一次调度时无需再运行
+      cronExpression: "* * * * * *" # crontab 表达式
+    - cmd: "date;sleep 180;date;"
+      id: 2
+      output: /tmp/2.log
+      singleton: 1
+      cronExpression: "0 */2 * * * *"
+    - cmd: "ls /tmp"
+      id: 3
+      output: /tmp/3.log
+      singleton: 0
+      cronExpression: "0 0 18 * * *"
+    - cmd: "ps"
+      id: 4
+      output: /tmp/4.log
+      singleton: 0
+      cronExpression: "0 */10 * * * *"
+    - cmd: "InvalidCommand"
+      id: 5
+      output: /tmp/5.log
+      singleton: 0
+      cronExpression: "* * * * * *"
+spring:
+  devtools:
+    restart:
+      exclude: "static/**,public/**"
