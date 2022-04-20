@@ -4,7 +4,7 @@
 利用java，实现类似crontab的定时任务调度功能.
 
 配置文件格式：
-```aidl
+```yaml
 crontab:
   crons:
     - cmd: "date;sleep 20;" # 要执行的命令
