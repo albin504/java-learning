@@ -34,13 +34,23 @@ public class Schedule {
     }
 
     public void run() {
-        new Timer("schedule").schedule(new TimerTask() {
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10);
+
+        // 从当前时间的下一分钟0秒开始调度
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DATE), calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE), 0);
+        calendar.add(Calendar.MINUTE, 1);
+        Date startTime = calendar.getTime();
+
+        // 从下一分钟0秒开始，以固定频率，每分钟调度一次
+        new Timer("schedule").scheduleAtFixedRate(new TimerTask() {
             @SneakyThrows
             @Override
             public void run() {
                 String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                 Logger.info("schedule:" + timestamp);
-                ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10);
                 List<CronEntity> dueCrons = findDueCrons();
                 Logger.info("due jobs:" + Arrays.toString(dueCrons.stream().map(b -> b.id).toArray()));
                 for (CronEntity cron :
@@ -50,6 +60,6 @@ public class Schedule {
                 }
 
             }
-        }, 0, 60000);
+        }, startTime, 60000);
     }
 }

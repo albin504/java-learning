@@ -19,7 +19,7 @@ crontab:
       id: 4
       output: /tmp/4.log
       singleton: 0
-      cronExpression: "0 */10 * * * *"
+      cronExpression: "0 */3 * * * *"
     - cmd: "InvalidCommand"
       id: 5
       output: /tmp/5.log
